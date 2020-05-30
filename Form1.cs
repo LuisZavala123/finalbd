@@ -30,6 +30,19 @@ namespace examenu6
                 dgvProductos.Rows[fila].Cells[3].Value = lista[i].Strock;
             }
         }
+        private void Form1_Load()
+        {
+            var lista = new ProductoDAO().GetAll();
+            dgvProductos.Rows.Clear();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                int fila = dgvProductos.Rows.Add();
+                dgvProductos.Rows[fila].Cells[0].Value = lista[i].Nombre;
+                dgvProductos.Rows[fila].Cells[1].Value = lista[i].Descripcion;
+                dgvProductos.Rows[fila].Cells[2].Value = lista[i].precio;
+                dgvProductos.Rows[fila].Cells[3].Value = lista[i].Strock;
+            }
+        }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
@@ -44,6 +57,25 @@ namespace examenu6
             this.Hide();
             frmAuditoria frm = new frmAuditoria();
             frm.Show();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string Nombre = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+            MProducto Pr = new ProductoDAO().GetbyNombre(Nombre);
+            ProductoDAO PD = new ProductoDAO();
+            PD.Eliminar(Pr.Clave.ToString());
+            Form1_Load();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            
+            string Nombre = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+            MProducto Pr = new ProductoDAO().GetbyNombre(Nombre);
+            frmEditar frame = new frmEditar(Pr);
+            frame.Show();
+            this.Hide();
         }
     }
 }
