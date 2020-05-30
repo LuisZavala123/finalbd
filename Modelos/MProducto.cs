@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace examenu6
 {
-    class MProducto
+    public class MProducto
     {
         public int Clave { get; set; }
         public String Nombre { get; set; }

@@ -115,7 +115,7 @@ namespace examenu6
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM Productos where Nombre = " + Nombre + ";";
+                sentencia.CommandText = "SELECT * FROM Productos where Nombre = '" + Nombre + "';";
 
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
@@ -176,25 +176,43 @@ namespace examenu6
         }
 
 
-        public Boolean Eliminar(string id)
+        public void Eliminar(string id)
         {
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "DELETE FROM Producto WHERE clave =" + id + ";";
+                sentencia.CommandText = "DELETE FROM Productos WHERE clave = " + id + " ;";
                 Conexion.ejecutarSentencia(sentencia, false);
 
-                return true;
+                
             }
             catch (Exception)
             {
-                return false;
+                
             }
             finally
             {
                 Conexion.desconectar();
             }
 
+        }
+
+        public void Editar(string id, string nombre, string desc, Double precio, int stock) 
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "UPDATE Productos SET Nombre='"+nombre+"',Descripcion='"+desc+"',Precio="+precio+",Stock="+stock+" WHERE clave =" + id + ";";
+                Conexion.ejecutarSentencia(sentencia, false);
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
     }
 }
