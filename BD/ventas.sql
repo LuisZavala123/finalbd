@@ -36,15 +36,6 @@ CREATE TABLE `auditoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `auditoria`
---
-
-LOCK TABLES `auditoria` WRITE;
-/*!40000 ALTER TABLE `auditoria` DISABLE KEYS */;
-INSERT INTO `auditoria` VALUES (1,'Productos','2020-05-23 20:16:01','INSERT','N/A','2','root@localhost'),(2,'Productos','2020-05-23 21:12:11','INSERT','N/A','N/A','root@localhost'),(3,'Productos','2020-05-23 21:12:20','INSERT','N/A','N/A','root@localhost');
-/*!40000 ALTER TABLE `auditoria` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `productos`
@@ -63,15 +54,7 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `productos`
---
 
-LOCK TABLES `productos` WRITE;
-/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'asdas','asdas',212.00,12),(2,'cosa2','',1.00,1),(3,'cosa3','q',12.00,2),(4,'trigger','asd',1.10,2),(5,'dos','as',1.00,2),(6,'tre','asd',3.00,3);
-/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -114,7 +97,7 @@ DELIMITER ;;
         then INSERT INTO auditoria (Tabla,Tipo,ValorAnterior,ValorNuevo,Usuario) VALUES 
         (
         'Productos',
-        'INSERT',
+        'UPDATE',
         old.Nombre,
         new.Nombre,
         current_user()
@@ -124,7 +107,7 @@ DELIMITER ;;
         then INSERT INTO auditoria (Tabla,Tipo,ValorAnterior,ValorNuevo,Usuario) VALUES 
         (
         'Productos',
-        'INSERT',
+        'UPDATE',
         old.Descripcion,
         new.Descripcion,
         current_user()
@@ -134,7 +117,7 @@ DELIMITER ;;
         then INSERT INTO auditoria (Tabla,Tipo,ValorAnterior,ValorNuevo,Usuario) VALUES 
         (
         'Productos',
-        'INSERT',
+        'UPDATE',
         old.Precio,
         new.Precio,
         current_user()
@@ -144,7 +127,7 @@ DELIMITER ;;
         then INSERT INTO auditoria (Tabla,Tipo,ValorAnterior,ValorNuevo,Usuario) VALUES 
         (
         'Productos',
-        'INSERT',
+        'UPDATE',
         old.stock,
         new.Stock,
         current_user()
