@@ -92,7 +92,7 @@ namespace examenu6
 
                     art.Clave = int.Parse(fila["Clave"].ToString());
                     art.Nombre = fila["Nombre"].ToString();
-                    art.Descripcion = fila["Descripccion"].ToString();
+                    art.Descripcion = fila["Descripcion"].ToString();
                     art.precio = double.Parse(fila["Precio"].ToString());
                     art.Strock = int.Parse(fila["Stock"].ToString());
 
@@ -126,7 +126,7 @@ namespace examenu6
 
                     art.Clave = int.Parse(fila["Clave"].ToString());
                     art.Nombre = fila["Nombre"].ToString();
-                    art.Descripcion = fila["Descripccion"].ToString();
+                    art.Descripcion = fila["Descripcion"].ToString();
                     art.precio = double.Parse(fila["Precio"].ToString());
                     art.Strock = int.Parse(fila["Stock"].ToString());
                     break;
